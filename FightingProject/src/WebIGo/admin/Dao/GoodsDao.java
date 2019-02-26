@@ -39,6 +39,14 @@ public class GoodsDao {
 		return 0;
 
 	}
+	
+	public void deleteGoodsByGtype(Goods goods) {
+		// TODO Auto-generated method stub
+		SqlSession session = sessionFactory.openSession();
+		GoodsMapper goodsMapper = session.getMapper(GoodsMapper.class);
+		goodsMapper.deleteGoodsByGtype(goods);
+		session.commit();
+	}
 
 	public int updateGoods(Goods goods) {
 		// TODO Auto-generated method stub
@@ -48,5 +56,7 @@ public class GoodsDao {
 		session.commit();
 		return 0;
 	}
+
+	
 
 }

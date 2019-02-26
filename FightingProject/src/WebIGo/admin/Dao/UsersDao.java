@@ -18,11 +18,19 @@ public class UsersDao {
 		return usersList;
 	}
 	
+	public List<User> listFrozenUsers(User user) {
+		// TODO Auto-generated method stub
+		SqlSession session = sessionFactory.openSession();
+		UsersMapper usersMapper = session.getMapper(UsersMapper.class);
+		List<User> usersList = usersMapper.listFrozenUsers(user);
+		return usersList;
+	}
+	
 	public int addUser2(User user) {
 		// TODO Auto-generated method stub
 		SqlSession session = sessionFactory.openSession();
 		UsersMapper usersMapper = session.getMapper(UsersMapper.class);
-		usersMapper.addUser(user);
+		usersMapper.addUser2(user);
 		session.commit();
 		return 0;
 	}
@@ -65,6 +73,26 @@ public class UsersDao {
         return user;
     }
 
+	public User findByName(String Uname){
+		SqlSession session=sessionFactory.openSession();
+		UsersMapper usersMapper=session.getMapper(UsersMapper.class);
+		User user=new User();
+		user.setUname(Uname);
+		user=usersMapper.findByName(user);
+		session.close();
+		return  user;
+	}
+
+	public boolean existUphone(String Uphone){
+		User user=new User();
+		user.setUphone(Uphone);
+
+		SqlSession session = sessionFactory.openSession();
+		UsersMapper userMapper = session.getMapper(UsersMapper.class);
+
+		return userMapper.existUphone(user.getUphone())!=null;
+	}
+
     public String register(User user){
         SqlSession session = sessionFactory.openSession();
         UsersMapper userMapper = session.getMapper(UsersMapper.class);
@@ -84,5 +112,6 @@ public class UsersDao {
             return "注册成功";
         }
     }
+
 	
 }

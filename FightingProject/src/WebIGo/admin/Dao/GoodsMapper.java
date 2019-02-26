@@ -8,5 +8,6 @@ public interface GoodsMapper {
 	List<Goods> listGoods();
 	int addGoods(Goods goods);
 	int deleteGoods(Goods goods);
+	void deleteGoodsByGtype(Goods goods);
 	void updateGoods(Goods goods);
 }

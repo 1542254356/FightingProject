@@ -8,13 +8,28 @@
 	  values (#{Tname},#{Tpic},#{Tintro},#{Tbrief})
 	</insert>
 	
+	<insert id="addGoodsType2" parameterType="WebIGo.admin.Bean.GoodsType">
+	  insert into goodstype (Tid,Tname,Tpic,Tintro,Tbrief)
+	  values (#{Tid},#{Tname},#{Tpic},#{Tintro},#{Tbrief})
+	</insert>
+	
     <!-- 查找所有 -->
     <select id="listGoodsType" parameterType="WebIGo.admin.Bean.GoodsType" resultType="WebIGo.admin.Bean.GoodsType">
         select * from goodstype
     </select>
     
+    <!-- 查找对应 Tid 下 -->
+    <select id="findGoodsTypeById" parameterType="WebIGo.admin.Bean.GoodsType" resultType="WebIGo.admin.Bean.GoodsType">
+        select * from goodstype WHERE Tid=#{Tid}
+    </select>
+    
+    <!-- 删除 -->
+    <delete id="deleteGoodsType" parameterType="WebIGo.admin.Bean.GoodsType">
+        DELETE FROM goodstype WHERE Tid=#{Tid}
+    </delete>
+    
     <!-- 修改记录 -->
     <update id="updateGoodsType" parameterType = "WebIGo.admin.Bean.GoodsType" >
-    	update goodstype set Tname=#{Tname},Tpic=#{Tpic},Tintro=#{Tintro} ,Tbrief=#{Tbrief}where Tid=#{Tid}
+    	update goodstype set Tname=#{Tname},Tpic=#{Tpic},Tintro=#{Tintro} ,Tbrief=#{Tbrief} where Tid=#{Tid}
     </update>
 </mapper>

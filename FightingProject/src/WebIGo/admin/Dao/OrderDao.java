@@ -21,6 +21,28 @@ public class OrderDao {
 
 	public int addOrder(OrderInfo orderInfo) {
 		// TODO Auto-generated method stub
+		SqlSession session = sessionFactory.openSession();
+		OrderMapper orderMapper = session.getMapper(OrderMapper.class);
+		orderMapper.addOrder(orderInfo);
+		session.commit();
+		return 0;
+	}
+
+	public int deleteOrder(OrderInfo orderInfo) {
+		// TODO Auto-generated method stub
+		SqlSession session = sessionFactory.openSession();
+		OrderMapper orderMapper = session.getMapper(OrderMapper.class);
+		orderMapper.deleteOrder(orderInfo);
+		session.commit();
+		return 0;
+	}
+
+	public int updateOrder(OrderInfo orderInfo) {
+		// TODO Auto-generated method stub
+		SqlSession session = sessionFactory.openSession();
+		OrderMapper orderMapper = session.getMapper(OrderMapper.class);
+		orderMapper.updateOrder(orderInfo);
+		session.commit();
 		return 0;
 	}
 

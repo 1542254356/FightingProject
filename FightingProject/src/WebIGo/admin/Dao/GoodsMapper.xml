@@ -13,13 +13,18 @@
         select * from goodsinfo
     </select>
     
-    <!-- 删除 -->
+    <!-- 正常删除 -->
     <delete id="deleteGoods" parameterType="WebIGo.admin.Bean.Goods">
         DELETE FROM goodsinfo WHERE Gid=#{Gid}
     </delete>
     
+    <!-- 类别删除 -->
+    <delete id="deleteGoodsByGtype" parameterType="WebIGo.admin.Bean.Goods">
+        DELETE FROM goodsinfo WHERE Gtype=#{Gtype}
+    </delete>
+    
     <!-- 修改记录 -->
     <update id="updateGoods" parameterType="WebIGo.admin.Bean.Goods" >
-    	update goodsinfo set Gname=#{Gname},Gimgurl=#{Gimgurl} , Gdiscount=#{Gdiscount}, Gamount=#{Gamount} ,Gprice=#{Gprice}where Gid=#{Gid}
+    	update goodsinfo set Gname=#{Gname},Gprice=#{Gprice},Gamount=#{Gamount},Gimgurl=#{Gimgurl},Gintro=#{Gintro},Gbrief=#{Gbrief},Gstate=#{Gstate},Gsale=#{Gsale},Gdiscount=#{Gdiscount},Gunit=#{Gunit} where Gid=#{Gid}
     </update>
 </mapper>

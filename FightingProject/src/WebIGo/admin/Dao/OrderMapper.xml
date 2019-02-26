@@ -4,17 +4,22 @@
 <mapper namespace="WebIGo.admin.Dao.OrderMapper"  >
     <!-- 添加纪录 -->
 	<insert id="addOrder" parameterType="WebIGo.admin.Bean.OrderInfo">
-	  insert into goodstype (Tname,Tpic,Tintro,Tbrief)
-	  values (#{Tname},#{Tpic},#{Tintro},#{Tbrief})
+	  insert into orderinfo (Ostate,Orecname,Uid,Orectel,Odate,Aid,Orecadr,Ototalprice,Ointro,Obrief)
+	  values (#{Ostate},#{Orecname},#{Uid},#{Orectel},#{Odate},#{Aid},#{Orecadr},#{Ototalprice},#{Ointro},#{Obrief})
 	</insert>
 	
 	<!-- 查找所有 -->
     <select id="listOrderInfos" parameterType="WebIGo.admin.Bean.OrderInfo" resultType="WebIGo.admin.Bean.OrderInfo">
         select * from orderinfo
     </select>
+    
+    <!-- 删除 -->
+    <delete id="deleteOrder" parameterType="WebIGo.admin.Bean.OrderInfo">
+        DELETE FROM orderinfo WHERE Oid=#{Oid}
+    </delete>
 	
-    <!-- 查找所有 -->
-    <select id="listGoodsType" parameterType="WebIGo.admin.Bean.OrderInfo" resultType="WebIGo.admin.Bean.OrderInfo">
-        select * from goodstype
-    </select>
+	<!-- 修改记录 -->
+    <update id="updateOrder" parameterType="WebIGo.admin.Bean.OrderInfo" >
+    	update orderinfo set Ostate=#{Ostate},Orecname=#{Orecname},Uid=#{Uid},Orectel=#{Orectel},Aid=#{Aid},Orecadr=#{Orecadr},Ototalprice=#{Ototalprice},Ointro=#{Ointro},Obrief=#{Obrief} where Oid=#{Oid}
+    </update>
 </mapper>

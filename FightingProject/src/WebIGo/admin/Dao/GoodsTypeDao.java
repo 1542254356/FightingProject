@@ -23,7 +23,14 @@ public class GoodsTypeDao {
 	{
 		SqlSession session = sessionFactory.openSession();
 		GoodsTypeMapper goodsTypeMapper = session.getMapper(GoodsTypeMapper.class);
-		goodsTypeMapper.addGoodsType(goodsType);
+		if(goodsType.getTid()!=0) {
+			goodsTypeMapper.addGoodsType2(goodsType);
+			System.out.println("addGoodsType2 :"+"ok");
+		}else {
+			goodsTypeMapper.addGoodsType(goodsType);
+			//System.out.println("addGoodsType :"+"ok");
+		}
+
 		session.commit();
 		return 0;
 		
@@ -36,6 +43,30 @@ public class GoodsTypeDao {
 		goodsTypeMapper.updateGoodsType(goodsType);
 		session.commit();
 		return 0;
+	}
+
+	public int deleteGoodsType(GoodsType goodsType) {
+		// TODO Auto-generated method stub
+		SqlSession session = sessionFactory.openSession();
+		GoodsTypeMapper goodsTypeMapper = session.getMapper(GoodsTypeMapper.class);
+		goodsTypeMapper.deleteGoodsType(goodsType);
+		session.commit();
+		return 0;
+		
+	}
+
+	public boolean findGoodsTypeByTid(GoodsType goodsType) {
+		// TODO Auto-generated method stub
+		SqlSession session = sessionFactory.openSession();
+		GoodsTypeMapper goodsTypeMapper = session.getMapper(GoodsTypeMapper.class);
+		List<GoodsType> typeList = goodsTypeMapper.findGoodsTypeById(goodsType);
+		
+		if(typeList.size()==0) {
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 
 

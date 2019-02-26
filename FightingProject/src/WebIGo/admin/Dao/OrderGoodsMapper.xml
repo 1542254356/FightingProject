@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="WebIGo.admin.Dao.OrderGoodsMapper"  >
+    <!-- 添加纪录 -->
+	<insert id="addOrderGoods" parameterType="WebIGo.admin.Bean.OrderGoods">
+	  insert into ordergoods (Oid,OGstate,Uid,Gid,Gname,OGamount,OGtotalprice,OGDate)
+	  values (#{Oid},#{OGstate},#{Uid},#{Gid},#{Gname},#{OGamount},#{OGtotalprice},#{OGDate})
+	</insert>
+	
+	<!-- 查找所有 -->
+    <select id="listGoodsOfOrder" parameterType="WebIGo.admin.Bean.OrderGoods" resultType="WebIGo.admin.Bean.OrderGoods">
+        select * from ordergoods WHERE Oid=#{Oid}
+    </select>
+    
+    <!-- 删除 -->
+    <delete id="deleteOrderGoods" parameterType="WebIGo.admin.Bean.OrderGoods">
+        DELETE FROM ordergoods WHERE OGid=#{OGid}
+    </delete>
+	
+	<!-- 修改记录 -->
+    <update id="updateOrderGoods" parameterType="WebIGo.admin.Bean.OrderGoods" >
+    	update ordergoods set OGstate=#{OGstate},OGamount=#{OGamount},OGtotalprice=#{OGtotalprice} where OGid=#{OGid}
+    </update>
+</mapper>
